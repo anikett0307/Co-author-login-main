@@ -4,7 +4,15 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const twilio = require('twilio');
 
-const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+// Initialize Twilio client only when proper credentials are provided
+const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
+let client = null;
+if (twilioAccountSid && twilioAccountSid.startsWith('AC') && twilioAuthToken) {
+  client = twilio(twilioAccountSid, twilioAuthToken);
+} else {
+  console.warn('[otpController] Twilio credentials missing/invalid. Running in dev-safe mode (SMS disabled).');
+}
 
 exports.sendOtp = async (req, res) => {
   const { phone } = req.body;
@@ -31,13 +39,17 @@ exports.sendOtp = async (req, res) => {
 
     console.log(`(Dev Mode) OTP for ${phone}: ${otp}`);
 
-    await client.messages.create({
-      body: `Your OTP is ${otp}. Do not share this with anyone.`,
-      from: process.env.TWILIO_PHONE_NUMBER, // must be verified in your Twilio account
-      to: `+91${phone}`,  // Indian number format
-    });
-
-    res.json({ success: true, message: `OTP sent successfully:` });
+    if (client) {
+      await client.messages.create({
+        body: `Your OTP is ${otp}. Do not share this with anyone.`,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: `+91${phone}`,
+      });
+      return res.json({ success: true, message: 'OTP sent successfully' });
+    } else {
+      // Dev-safe mode: skip SMS but still respond success for local testing
+      return res.json({ success: true, message: 'OTP generated (dev mode, SMS skipped)' });
+    }
   }
   catch (error) {
     console.error('Error sending OTP:', error);
