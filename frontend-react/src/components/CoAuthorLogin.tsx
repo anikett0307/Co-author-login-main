@@ -125,6 +125,7 @@ const CoAuthorLogin = () => {
             alt="Institution"
             className="auth-icon"
           />
+          Institutional Sign-In
         </button>
 
         <button
