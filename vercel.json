@@ -2,21 +2,25 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend-react/package.json",
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend-react/vite.config.ts",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "frontend-react/dist"
       }
     }
   ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "frontend-react/dist/$1"
     }
   ]
 }
