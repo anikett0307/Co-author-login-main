@@ -1,0 +1,19 @@
+{
+    "name": "project1-backend",
+    "version": "1.0.0",
+    "description": "Authentication System Backend",
+    "main": "backend/server.js",
+    "scripts": {
+        "start": "cd backend && npm start",
+        "install-backend": "cd backend && npm install",
+        "dev": "cd backend && npm start"
+    },
+    "keywords": [
+        "authentication",
+        "otp",
+        "mongodb",
+        "express"
+    ],
+    "author": "Your Name",
+    "license": "MIT"
+}
