@@ -2,7 +2,15 @@
   "version": 2,
   "builds": [
     {
+<<<<<<< HEAD
       "src": "frontend-react/package.json",
+=======
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend-react/vite.config.ts",
+>>>>>>> 39cfd39f88fa8eeb647d40f562407004bebbcd43
       "use": "@vercel/static-build",
       "config": {
         "distDir": "frontend-react/dist"
@@ -11,6 +19,13 @@
   ],
   "routes": [
     {
+<<<<<<< HEAD
+=======
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+>>>>>>> 39cfd39f88fa8eeb647d40f562407004bebbcd43
       "src": "/(.*)",
       "dest": "/frontend-react/dist/$1"
     }
