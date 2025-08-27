@@ -227,10 +227,13 @@ const CoAuthorLogin = () => {
 
       {/* Footer Information */}
       <div className="footer-info">
-        <p>
-          <strong>Need access?</strong> Contact your project coordinator or
-          email <a href="mailto:access@sdgpolicy.org">access@sdgpolicy.org</a>
-        </p>
+        <button 
+          type="button" 
+          className="signup-btn"
+          onClick={() => console.log("Sign up clicked")}
+        >
+          Sign Up
+        </button>
         <p style={{ marginTop: 8 }}>
           By signing in, you agree to our{" "}
           <button type="button" onClick={() => console.log("Show Terms")}>

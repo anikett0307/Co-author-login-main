@@ -520,6 +520,45 @@ h1 {
   line-height: 1.4;
 }
 
+/* ==========================================================================
+   SIGNUP BUTTON
+   ========================================================================== */
+
+.signup-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  min-height: 48px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.signup-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.signup-btn:active {
+  transform: translateY(0);
+}
+
+.signup-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
 .footer-info a {
   color: #3b82f6;
   text-decoration: none;
