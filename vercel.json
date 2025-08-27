@@ -1,15 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "backend/server.js", "use": "@vercel/node" },
     {
       "src": "frontend-react",
       "use": "@vercel/static-build",
-      "config": { "distDir": "frontend-react/dist" }
+      "config": {
+        "distDir": "frontend-react/dist"
+      }
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/backend/server.js" },
-    { "src": "/(.*)", "dest": "/frontend-react/dist/$1" }
+    {
+      "src": "/(.*)",
+      "dest": "/frontend-react/dist/$1"
+    }
   ]
 }
